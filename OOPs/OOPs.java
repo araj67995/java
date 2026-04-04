@@ -80,7 +80,7 @@ class Student {
     }
 }
 
-// Encapsulation
+// 1. Encapsulation
 class BankAccount {
     String name;
     private String password; // it cannot be acces by other directly
