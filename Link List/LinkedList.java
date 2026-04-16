@@ -40,16 +40,16 @@ public class LinkedList {
         tail = newNode;
     }
 
-    public void add(int index, int data){
-        if(index == 0){
+    public void add(int index, int data) {
+        if (index == 0) {
             addFirst(data);
             return;
         }
         Node newNode = new Node(data);
         size++;
         Node temp = head;
-         int i = 0;
-        while( i< index-1){
+        int i = 0;
+        while (i < index - 1) {
             temp = temp.next;
             i++;
         }
@@ -71,11 +71,11 @@ public class LinkedList {
         System.out.println("null");
     }
 
-    public int removeFirst(){
-        if(size == 0){
+    public int removeFirst() {
+        if (size == 0) {
             System.out.println("LL is empty");
             return Integer.MIN_VALUE;
-        } else if(size == 1){
+        } else if (size == 1) {
             int val = head.data;
             size = 0;
             head = tail = null;
@@ -88,11 +88,11 @@ public class LinkedList {
         return val;
     }
 
-    public int removeLast(){
-         if(size == 0){
+    public int removeLast() {
+        if (size == 0) {
             System.out.println("LL is empty");
             return Integer.MIN_VALUE;
-        } else if(size == 1){
+        } else if (size == 1) {
             int val = head.data;
             size = 0;
             head = tail = null;
@@ -100,7 +100,7 @@ public class LinkedList {
         }
         // prev: i = size -2
         Node prev = head;
-        for(int i = 0; i<size-2;i++){
+        for (int i = 0; i < size - 2; i++) {
             prev = prev.next;
         }
 
@@ -111,49 +111,48 @@ public class LinkedList {
         return val;
     }
 
-
     // Search in LL
     public int itrSearch(int key) {
         Node temp = head;
         int i = 0;
 
-        while(temp != null){
-            if(temp.data == key){
+        while (temp != null) {
+            if (temp.data == key) {
                 return i;
             }
             temp = temp.next;
             i++;
         }
 
-        return -1;        
+        return -1;
     }
 
-    public int helper(Node head, int key){
-        if(head == null){
+    public int helper(Node head, int key) {
+        if (head == null) {
             return -1;
         }
 
-        if(head.data == key){
+        if (head.data == key) {
             return 0;
         }
         int idx = helper(head.next, key);
-        if(idx == -1){
+        if (idx == -1) {
             return -1;
         }
 
-        return idx+1;
+        return idx + 1;
     }
 
-    public int recSearch(int key){
+    public int recSearch(int key) {
         return helper(head, key);
     }
 
-    public void reverse(){
+    public void reverse() {
         Node prev = null;
         Node curr = tail = head;
         Node next;
 
-        while(curr != null){
+        while (curr != null) {
             next = curr.next;
             curr.next = prev;
             prev = curr;
@@ -161,6 +160,32 @@ public class LinkedList {
         }
 
         head = prev;
+    }
+
+    // delete nth node form last
+    public void deleteNth(int n) {
+        int sz = 0;
+        Node temp = head;
+        while (temp != null) {
+            temp = temp.next;
+            sz++;
+        }
+        if (n == sz) {
+            head = head.next;
+            return;
+        }
+
+        int i = 1;
+        int iToFind = sz -n;
+        Node prev = head;
+        while(i < iToFind){
+            prev = prev.next;
+            i++;
+        }
+
+        prev.next = prev.next.next;
+        size--;
+        return;
     }
 
     public static void main(String args[]) {
@@ -182,8 +207,11 @@ public class LinkedList {
         // ll.removeLast();
         // ll.print();
 
-        ll.reverse();
+        // ll.reverse();
+        System.out.println(size);
+        ll.deleteNth(2);
         ll.print();
+        System.out.print(size);
     }
 
 }
