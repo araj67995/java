@@ -267,4 +267,5 @@ public class LinkedList {
 
 }
 
-// sorry
+// sorry for no work
+// its sunday
