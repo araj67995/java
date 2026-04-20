@@ -269,3 +269,4 @@ public class LinkedList {
 
 // sorry for no work
 // its sunday
+// fday 2
